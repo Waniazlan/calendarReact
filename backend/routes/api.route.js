@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const {google} = require('googleapis');
+const { appengine } = require('googleapis/build/src/apis/appengine');
 
  
-const GOGGLE_CLIENT_ID = '433784948390-lp2v21b6svlilevtq6ek19pr55oq45bo.apps.googleusercontent.com'
-const GOOGLE_CLIENT_SECRET = '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'
+const GOGGLE_CLIENT_ID = '21633126117-m0adi0dqmienhgrd9eierabhklpoi1b3.apps.googleusercontent.com'
+const GOOGLE_CLIENT_SECRET = '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'
 const REFRESH_TOKEN = '1//06duBmepBLm93CgYIARAAGAYSNwF-L9Irk6oUMPPpRLQFu5fTV9rDrWQ3JkS0p7-fmzfOz8nAE_zRLmrIiUYifP8i_XSiv2wLbZs'
 
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly','https://www.googleapis.com/auth/calendar' ]
@@ -13,13 +14,20 @@ const oauth2Client = new google.auth.OAuth2(
     GOGGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET,
     'http://localhost:5173',
-   SCOPES
+   
 )
 
-
-router.get('/',async(req,res,next) =>{
-    res.status({message:'ok api is working'})
+router.get('/',(req,res) =>{
+  const url = oauth2Client.generateAuthUrl({
+    access_type:'offline',
+    scope:SCOPES
+  })
+  res.redirect(url)
 })
+
+//router.get('/',async(req,res,next) =>{
+    //res.status({message:'ok api is working'})
+//})
 
 router.post('/create-token',async(req,res,next) =>{
     try {

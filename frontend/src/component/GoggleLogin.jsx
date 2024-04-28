@@ -4,24 +4,30 @@ import { hasGrantedAnyScopeGoogle } from '@react-oauth/google';
 import google from '../assets/google.png'
 import axios from 'axios';
 
-const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly','https://www.googleapis.com/auth/calendar' ]
+
 const GoggleLogin = () => {
 
-const login = useGoogleLogin({
-  flow: 'auth-code',
-  onSuccess: async (codeResponse) => {
-      console.log(codeResponse);
-      const {code} = codeResponse
-     axios.post('http://localhost:4000/create-token', {code}).then(response =>{
-      console.log(response.data)
-     }).catch(error =>{
-      console.log(error.message)
-     })
-  },
-  onError: errorResponse => console.log(errorResponse),
-
-});
-
+  const login = useGoogleLogin({
+    flow: 'auth-code',
+    scope: 'https://www.googleapis.com/auth/calendar',
+    onSuccess: async (codeResponse) => {
+      try {
+        console.log(codeResponse);
+        const { code } = codeResponse; 
+        axios.post('http://localhost:4000/create-token', { code })
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => console.log(error.message));
+      } catch (error) { 
+        console.log(error);
+      }
+    },
+    onError: (error) => {
+      console.log(error);
+    }
+  });
+  
 
   return (
     <div >
