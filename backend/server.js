@@ -70,6 +70,17 @@ app.get('/events', async (req, res) => {
     res.status(500).json({ error: 'Error retrieving events' });
   }
 });
+app.delete('/events/:eventId', async (req, res) => {
+  try {
+    const { eventId } = req.params;
+    const calendar = google.calendar({version: 'v3', auth:oauth2Client});
+    await calendar.events.delete({ calendarId: 'primary', eventId });
+    res.json({ message: 'Event deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting event:', error);
+    res.status(500).json({ error: 'Error deleting event' });
+  }
+});
 
 
 const PORT =process.env.PORT || 3000;
