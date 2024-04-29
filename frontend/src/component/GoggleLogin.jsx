@@ -12,7 +12,6 @@ const GoggleLogin = () => {
     scope: 'https://www.googleapis.com/auth/calendar',
     onSuccess: async (codeResponse) => {
       try {
-        console.log(codeResponse);
         const { code } = codeResponse; 
         axios.post('http://localhost:4000/create-token', { code })
           .then(response => {

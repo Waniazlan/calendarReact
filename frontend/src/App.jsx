@@ -2,10 +2,8 @@ import React, { useState,useEffect } from 'react';
 import Calendar from './component/calendar';
 import GoggleLogin from './component/GoggleLogin';
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import EventCalendar from './component/EventCalendar';
-import image from './assets/image.jpg'
-import axios from 'axios';
 import DateTime from './component/DateTime';
+import GetEvent from './component/GetEvent';
 
 
 
@@ -46,6 +44,7 @@ function App() {
     <GoggleLogin />
     <DateTime />
     <Calendar />
+    <GetEvent />
     
    </div>
    </GoogleOAuthProvider>
