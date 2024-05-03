@@ -4,6 +4,12 @@ import GoggleLogin from './component/GoggleLogin';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import DateTime from './component/DateTime';
 import GetEvent from './component/GetEvent';
+import Panel from './component/Panel';
+import { AuthProvider} from './component/AuthProvider';
+import GoogleLogin from './component/GoggleLogin'
+import EventCalendar from './component/EventCalendar';
+import { Slide, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -36,17 +42,27 @@ function App() {
   return (
 
     <GoogleOAuthProvider clientId='433784948390-lp2v21b6svlilevtq6ek19pr55oq45bo.apps.googleusercontent.com'>
-   <div className='h-screen w-screen' style={{
+      <AuthProvider >
+   <div className='h-screen w-screen ' style={{
     backgroundImage: `url(${imageUrl})`,
-   backgroundSize: 'cover',
+   backgroundSize: '100% 100% ',
         width: screen,
         height: screen,}}>
-    <GoggleLogin />
-    <DateTime />
-    <Calendar />
-    <GetEvent />
+          <div className='flex-col float-right gap-4 mr-10'>
+          <DateTime />
+          </div>
     
+    
+    <Calendar />
+    <GoogleLogin />
+<Panel />
+<ToastContainer 
+autoClose={1500}
+transition={Slide}
+position="bottom-right"
+ />
    </div>
+   </AuthProvider>
    </GoogleOAuthProvider>
    
   );

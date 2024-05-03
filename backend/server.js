@@ -26,7 +26,8 @@ app.get('/',async(req,res,next) =>{
 })
 
 app.post('/create-token', async (req, res) => {
-  
+ const {code} = req.body;
+ res.send(code)
 });
 
 app.post('/create-event', async (req, res,next) => {
@@ -70,6 +71,8 @@ app.get('/events', async (req, res) => {
     res.status(500).json({ error: 'Error retrieving events' });
   }
 });
+
+
 app.delete('/events/:eventId', async (req, res) => {
   try {
     const { eventId } = req.params;
@@ -82,6 +85,32 @@ app.delete('/events/:eventId', async (req, res) => {
   }
 });
 
+app.put('/events/:eventId',async(req,res) =>{
+  try {
+    const {eventId} = req.params
+    const {summary,startDateTime,endDateTime} = req.body
+    const calendar = google.calendar({version:'v3',auth:oauth2Client});
+    const response = await calendar.events.update({
+      calendarId: 'primary',
+      eventId: eventId,
+      requestBody: {
+        start: {
+          dateTime: new Date(startDateTime)
+        },
+        end: {
+          dateTime: new Date(endDateTime)
+        },
+        summary: summary
+      }
+    });
+    res.send(response.data);
+  } catch (error) {
+    console.error('error edit the event')
+    res.status(500).json({error:'edit event error'})
+  }
+ 
+  
+})
 
 const PORT =process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`running in port${PORT}`))

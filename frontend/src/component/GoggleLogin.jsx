@@ -1,42 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { googleLogout, useGoogleLogin } from '@react-oauth/google';
-import { hasGrantedAnyScopeGoogle } from '@react-oauth/google';
+import React from 'react';
+import { useAuth } from './AuthProvider';
 import google from '../assets/google.png'
-import axios from 'axios';
+
+
+
 
 
 const GoggleLogin = () => {
+  const { isLogging, login, logOut } = useAuth();
 
-  const login = useGoogleLogin({
-    flow: 'auth-code',
-    scope: 'https://www.googleapis.com/auth/calendar',
-    onSuccess: async (codeResponse) => {
-      try {
-        const { code } = codeResponse; 
-        axios.post('http://localhost:4000/create-token', { code })
-          .then(response => {
-            console.log(response.data);
-          })
-          .catch(error => console.log(error.message));
-      } catch (error) { 
-        console.log(error);
-      }
-    },
-    onError: (error) => {
-      console.log(error);
-    }
-  });
-  
+
 
   return (
-    <div >
-    
-        <button className='text-white text-md font-bold bg-blue-400 rounded-md px-3 py-3 flex gap-4 ' onClick={() => login()}>Sign In
-          <img className='w-5 h-5' src={google}></img>
-        </button>
-    
-</div>
+    <div className='absolute right-[45px] mt-[160px]'>
+    {isLogging ? 
+      <button className='text-white text-sm font-semibold hover:bg-slate-200 hover:text-black ease-in duration-300  rounded-xl px-2 py-2 flex gap-3 ' onClick={() => logOut()}>
+        <img className='w-5 h-' src={google} alt="Google logo" />
+      </button> 
+      : 
+      <button className='text-white text-sm font-semibold hover:bg-slate-200 hover:text-black ease-in duration-300 rounded-xl px-2 py-2 flex gap-3 ' onClick={() => login()}>
+        <img className='w-5 h-5' src={google} alt="Google logo" />
+      </button>
+    }
+  </div>
   );
 };
 
-export default GoggleLogin;
+export default GoggleLogin

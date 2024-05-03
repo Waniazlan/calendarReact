@@ -1,18 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAuth } from './AuthProvider';
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 
 const GetEvent = () => {
   const [events, setEvents] = useState([]);
+
+  const { isLogging} = useAuth()
+  
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get('http://localhost:4000/events');
-        setEvents(response.data.events);
-        
-        
+        setEvents(response.data.events)  
+       
       } catch (error) {
         console.error('Error fetching events:', error);
+        
       }
     };
 
@@ -23,25 +33,67 @@ const GetEvent = () => {
     try {
       await axios.delete(`http://localhost:4000/events/${eventId}`);
       setEvents(events.filter(event => event.id !== eventId));
-      
+      toast.success('Event deleted successfully!');
+  
     } catch (error) {
       console.error('Error deleting event:', error);
+      toast.error('Failed to delete event.');
     }
   };
 
+  const today = new Date().toISOString().split('T')[0];
 
+ 
+  const todayEvents = events.filter(event => event.start.dateTime.includes(today));
+  const upcomingEvents = events.filter(event => !event.start.dateTime.includes(today));
 
+  if (!isLogging) {
+    return null;
+}
+
+  
   return (
-    <div>
-    <h1>Events</h1>
-    <ul>
-      {events.map(event => (
-        <li key={event.id}>
-          {event.summary} - {new Date(event.start.dateTime).toLocaleString()}
-          <button onClick={() => deleteEvent(event.id)}>Delete</button> {/* Delete button */}
-        </li>
+    
+    <div className='mt-2'>
+    <div className='bg-black  bg-opacity-50 rounded-md px-3 mb-2  text-white'>
+      <h2 className='py-3 px-4 font-bold text-white shadow-xl text-center text-md'>Today's Events</h2>
+      
+      <div className="overflow-y-auto  max-h-20 ">
+    {todayEvents.map(event => (
+      <div key={event.id} className='max-w-full justify-between gap-4 flex px-4 py-2'>
+        <div className='grid'>
+          <h2 className='text-md font-bold'>{event.summary}</h2>
+          <p className='text-sm'>{new Date(event.start.dateTime).toLocaleString()}</p>
+        </div>
+        <button className='hover:bg-gray-200 duration-200 px-2 rounded-full' onClick={() => deleteEvent(event.id)}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 hover:text-black text-white">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    ))}
+  </div>
+        
+    </div>
+    <div className='bg-black rounded-md px-3 py-4 bg-opacity-50 text-white'>
+      <h2 className='px-4 font-bold shadow-xl text-center text-white text-md '>Upcoming Events</h2>
+      {upcomingEvents.map(event => (
+        <div key={event.id} className='gap-5 flex justify-between px-4 py-2'>
+          <div className='grid '>
+            <h2 className='text-md font-bold'>{event.summary}</h2>
+            <p className='text-sm'>{new Date(event.start.dateTime).toLocaleString()}</p>
+             
+          </div>
+          <button className='hover:bg-gray-200 px-2 duration-200 rounded-full' onClick={() => deleteEvent(event.id)}>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 hover:text-black text-white">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+
+          </button>
+        
+        </div>
       ))}
-    </ul>
+    </div>
   </div>
   );
 };
