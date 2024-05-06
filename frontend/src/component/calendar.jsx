@@ -47,7 +47,7 @@ const Calendar = () => {
 
 
   return (
-    <div className='absolute right-5 top-[80px] flex gap-6'>
+    <div className='absolute right-5 top-[70px] flex gap-6'>
      
      <div className='flex gap-6 mr-4'>
       <div>

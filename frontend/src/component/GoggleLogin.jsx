@@ -12,7 +12,7 @@ const GoggleLogin = () => {
 
 
   return (
-    <div className='absolute right-[45px] mt-[25px]'>
+    <div className='absolute right-[45px] mt-[20px]'>
     {isLogging ? 
       <button className='text-white text-sm font-semibold hover:bg-slate-200 hover:text-black ease-in duration-300  rounded-xl px-2 py-2 flex gap-3 ' onClick={() => logOut()}>
         Sign Out
