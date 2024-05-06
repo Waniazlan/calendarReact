@@ -44,8 +44,8 @@ const GetEvent = () => {
   const today = new Date().toISOString().split('T')[0];
 
  
-  const todayEvents = events.filter(event => event.start.dateTime.includes(today));
-  const upcomingEvents = events.filter(event => !event.start.dateTime.includes(today));
+  const todayEvents = events.filter(event => event.start.dateTime.includes(today)).slice(0, 2)
+  const upcomingEvents = events.filter(event => !event.start.dateTime.includes(today)).slice(0,2);
 
   if (!isLogging) {
     return null;
@@ -57,10 +57,9 @@ const GetEvent = () => {
     <div className='mt-2'>
     <div className='bg-black  bg-opacity-50 rounded-md px-3 mb-2  text-white'>
       <h2 className='py-3 px-4 font-bold text-white shadow-xl text-center text-md'>Today's Events</h2>
-      
-      <div className="overflow-y-auto  max-h-20 ">
+        
     {todayEvents.map(event => (
-      <div key={event.id} className='max-w-full justify-between gap-4 flex px-4 py-2'>
+      <div key={event.id} className='max-w-full justify-between gap-4 flex px-4 py-2 h-20'>
         <div className='grid'>
           <h2 className='text-md font-bold'>{event.summary}</h2>
           <p className='text-sm'>{new Date(event.start.dateTime).toLocaleString()}</p>
@@ -72,8 +71,7 @@ const GetEvent = () => {
         </button>
       </div>
     ))}
-  </div>
-        
+       
     </div>
     <div className='bg-black rounded-md px-3 py-4 bg-opacity-50 text-white'>
       <h2 className='px-4 font-bold shadow-xl text-center text-white text-md '>Upcoming Events</h2>
