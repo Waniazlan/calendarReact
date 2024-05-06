@@ -7,7 +7,7 @@ const {google} = require('googleapis');
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-app.use(cors());
+
 
 const GOGGLE_CLIENT_ID = '433784948390-lp2v21b6svlilevtq6ek19pr55oq45bo.apps.googleusercontent.com'
 const GOOGLE_CLIENT_SECRET = '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'
@@ -19,7 +19,11 @@ const oauth2Client = new google.auth.OAuth2(
     'http://localhost:5173',
    
 )
-  
+app.use(cors({ origin: 'http://localhost:5173',
+  methods:['GET', 'POST','DELETE']
+ }));
+
+ 
 
 app.get('/',async(req,res,next) =>{
   res.send({message:'awesome'})

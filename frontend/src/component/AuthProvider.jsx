@@ -31,21 +31,10 @@ const AuthProvider = ({ children }) => {
     }
   });
 
-  const logOut = async () => {
-    try {
-      await googleLogout(
-        { onSuccess: () => {
-        setIsLogging(false);
-        console.log("Logout successful");
-      },
-      onError: (error) => {
-        console.log("Logout error:", error);
-      }
-    }
-      );
-      } catch (error) {
-        console.log("Error during logout:", error);
-      }
+
+  const logOut = () => {
+    googleLogout()
+    setIsLogging(false)
   };
 
   return (
