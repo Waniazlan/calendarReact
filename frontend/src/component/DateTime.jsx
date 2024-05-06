@@ -24,7 +24,7 @@ function DateTime() {
     }, []);
   
     return(
-        <div className="text-center mr-[700px] mt-10 font-semibold font-sans text-shadow-md text-white ">
+        <div className="text-center md:mr-[550px] mt-10 font-semibold font-sans text-shadow-md text-white ">
         <div className="font-bold  text-[40px]">{currentDay}</div>
         <div className="font-semibold  mb-4 text-[30px]">{currentTime}</div>
       </div>

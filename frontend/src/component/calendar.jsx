@@ -50,7 +50,10 @@ const Calendar = () => {
     <div className='absolute right-5 top-[80px] flex gap-6'>
      
      <div className='flex gap-6 mr-4'>
-     {show && <EventCalendar />}
+      <div>
+      {show && <EventCalendar />}
+      </div>
+     
      <div className='flex-col'>
       <div className="py-4 px-5 mx-auto bg-black  bg-opacity-50 rounded-md">
             <div className="text-center mb-4">

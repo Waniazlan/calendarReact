@@ -6,7 +6,7 @@ import google from '../assets/google.png'
 
 function Panel() {
   return (
-    <div className='absolute mt-[750px] ml-[500px]'>
+    <div className='absolute mt-[750px] md:mx-[40%] '>
       <div className='flex ' >      
         <a className='w-20 h-12 my-3 mx-3' href='https://meet.google.com/'>
         <img  className='h-full w-full object-contain' src={googlemeet} alt='goolemeet' ></img>
