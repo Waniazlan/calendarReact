@@ -23,28 +23,28 @@ function EventCalendar() {
         
     }
   return (
-    <div className='px-5  mx-6 py-4 bg-opacity-50 shadow-xl rounded-md bg-black lg:max-w-xl mr-[2] '>
+    <div className='px-3 mr-4 py-4 bg-opacity-30 shadow-xl rounded-md bg-black sm:mx-auto lg:max-w-xl  '>
         <form onSubmit={handleSubmit} className="space-y-4 text-center" >
           <h1 className='text-2xl font-bold text-white '>Add Event</h1>
           <div className='flex flex-col max-w-xl text-white'>
-            <div className='py-3 font-medium'>
+            <div className='p-3 font-medium'>
               <label htmlFor='summary'>Event</label>
               <br />
-              <input type='text' className='px-3 rounded-xl py-2 mt-2 text-md font-medium text-black' id='summary' value={summary} onChange={e => setSummary(e.target.value)}
+              <input type='text' className='px-3  w-full rounded-xl py-2 mt-2 text-md font-medium text-black' id='summary' value={summary} onChange={e => setSummary(e.target.value)}
               ></input>
             </div>
           
-            <div className='py-3'>
+            <div className='p-3'>
               <label className='text-md font-medium ' htmlFor='startDateTime'>Start Date Time</label>
               <br />
-              <input className='px-3 py-2 mt-2 rounded-xl text-black' type='datetime-local' id='startDateTime' value={startDateTime} onChange={e => setStartDateTime(e.target.value)}
+              <input className='px-3 py-2 mt-2 w-full rounded-xl text-black' type='datetime-local' id='startDateTime' value={startDateTime} onChange={e => setStartDateTime(e.target.value)}
               ></input>
             </div>
             
-            <div className='py-3'>
+            <div className='p-3'>
               <label className='text-md font-medium ' htmlFor='endDateTime'>End date time</label>
               <br />
-              <input className='px-3 py-2 mt-2 rounded-xl text-black' type='datetime-local' id='endDateTime' value={endDateTime} onChange={e =>setEndDateTime(e.target.value)}
+              <input className='px-3 py-2 mt-2 w-full rounded-xl text-black' type='datetime-local' id='endDateTime' value={endDateTime} onChange={e =>setEndDateTime(e.target.value)}
               ></input>
             </div>           
           </div>

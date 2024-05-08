@@ -17,13 +17,6 @@ const AuthProvider = ({ children }) => {
         const { code } = codeResponse;
         localStorage.setItem("token",code);
         setIsLogging(true);
-        // axios.post('http://localhost:4000/create-token', { code })
-        //   .then(response => {
-        //     console.log(response.data);
-        //     localStorage.setItem("token",response.data);
-        //     setIsLogging(true);
-        //   })
-        //   .catch(error => console.log(error.message));
       } catch (error) {
         console.log(error);
       }

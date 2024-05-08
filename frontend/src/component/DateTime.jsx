@@ -25,13 +25,12 @@ function DateTime() {
     }, []);
   
     return(
-        <div className="text-center float-right font-semibold font-sans text-shadow-md text-white ">
-          <div className='flex gap-3 mr-3 mt-4'>
+        <div className="text-center font-semibold flex justify-between font-sans text-shadow-md text-white ">
+          <div></div>
+          <div className='flex gap-3 mr-5 mt-4'>
             <div className="font-bold  text-[20px]">{currentDay}</div>
             <div className="font-semibold  mb-4 text-[20px]">{currentTime}</div>
-          </div>
-      
-      
+          </div>    
       </div>
     )
 }

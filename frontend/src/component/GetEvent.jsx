@@ -57,7 +57,7 @@ const GetEvent = () => {
   return (
     
     <div className='mt-2'>
-    <div className='bg-black  bg-opacity-50 rounded-md px-3 mb-2  text-white'>
+    <div className='bg-white  bg-opacity-30 rounded-md px-3 mb-2  text-white'>
       <h2 className='py-3 px-4 font-bold text-white shadow-xl text-center text-md'>Today's Events</h2>
         
     {todayEvents.map(event => (
@@ -75,7 +75,7 @@ const GetEvent = () => {
     ))}
        
     </div>
-    <div className='bg-black rounded-md px-3 py-4 bg-opacity-50 text-white'>
+    <div className='bg-white rounded-md px-3 py-4 bg-opacity-30 text-white'>
       <h2 className='px-4 font-bold shadow-xl text-center text-white text-md '>Upcoming Events</h2>
       {upcomingEvents.map(event => (
         <div key={event.id} className='gap-5 flex justify-between px-4 py-2'>
