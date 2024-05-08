@@ -50,6 +50,7 @@ function App() {
         height: screen,}}> 
         <DateTime />
         <Calendar />
+        <Panel />
 <ToastContainer 
 autoClose={1500}
 transition={Slide}
@@ -58,7 +59,7 @@ position="bottom-right"
    </div>
    </AuthProvider>
    </GoogleOAuthProvider>
-   
+  
   );
   
 }
