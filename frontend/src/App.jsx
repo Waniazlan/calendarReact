@@ -43,19 +43,17 @@ function App() {
 
     <GoogleOAuthProvider clientId='433784948390-lp2v21b6svlilevtq6ek19pr55oq45bo.apps.googleusercontent.com'>
       <AuthProvider >
-   <div className='h-screen w-screen ' style={{
+   <div className='h-screen w-screen' style={{
     backgroundImage: `url(${imageUrl})`,
    backgroundSize: '100% 100% ',
         width: screen,
-        height: screen,}}>
-          <div className='flex-col float-right gap-4 mr-10'>
-          <DateTime />
-          </div>
-    
-    
-    <Calendar />
-    <GoogleLogin />
-<Panel />
+        height: screen,}}> 
+        <DateTime />
+          <GoogleLogin />
+          <Calendar />  
+
+ 
+
 <ToastContainer 
 autoClose={1500}
 transition={Slide}

@@ -23,7 +23,7 @@ function EventCalendar() {
         
     }
   return (
-    <div className='px-5  py-4 bg-opacity-50 shadow-xl rounded-md bg-black lg:max-w-xl mr-[2] '>
+    <div className='px-5  mx-6 py-4 bg-opacity-50 shadow-xl rounded-md bg-black lg:max-w-xl mr-[2] '>
         <form onSubmit={handleSubmit} className="space-y-4 text-center" >
           <h1 className='text-2xl font-bold text-white '>Add Event</h1>
           <div className='flex flex-col max-w-xl text-white'>

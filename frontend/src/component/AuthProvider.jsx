@@ -15,13 +15,15 @@ const AuthProvider = ({ children }) => {
     onSuccess: async (codeResponse) => {
       try {
         const { code } = codeResponse;
-        axios.post('http://localhost:4000/create-token', { code })
-          .then(response => {
-            console.log(response.data);
-            setIsLogging(true);
-
-          })
-          .catch(error => console.log(error.message));
+        localStorage.setItem("token",code);
+        setIsLogging(true);
+        // axios.post('http://localhost:4000/create-token', { code })
+        //   .then(response => {
+        //     console.log(response.data);
+        //     localStorage.setItem("token",response.data);
+        //     setIsLogging(true);
+        //   })
+        //   .catch(error => console.log(error.message));
       } catch (error) {
         console.log(error);
       }
@@ -31,10 +33,10 @@ const AuthProvider = ({ children }) => {
     }
   });
 
-
   const logOut = () => {
     googleLogout()
     setIsLogging(false)
+    localStorage.removeItem("token")
   };
 
   return (

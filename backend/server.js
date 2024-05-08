@@ -59,7 +59,10 @@ app.post('/create-event', async (req, res,next) => {
 
 app.get('/events', async (req, res) => {
   try {
-    oauth2Client.setCredentials({refresh_token:REFRESH_TOKEN},)
+
+    const { token } = req.query;     
+    const {tokens} = await oauth2Client.getToken(token) 
+    oauth2Client.setCredentials(tokens);
     const calendar = google.calendar({version: 'v3', auth:oauth2Client});
     const response = await calendar.events.list({
       calendarId: 'primary', 
@@ -69,6 +72,8 @@ app.get('/events', async (req, res) => {
       orderBy: 'startTime',
     });
     const events = response.data.items;
+    
+    console.log(events)
     res.json({events})
   } catch (error) {
     console.error('Error retrieving events:', error);

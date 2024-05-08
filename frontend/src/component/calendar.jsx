@@ -47,17 +47,20 @@ const Calendar = () => {
 
 
   return (
-    <div className='absolute right-5 top-[70px] flex gap-6'>
-     
-     <div className='flex gap-6 mr-4'>
+    <div className='absolute right-5 top-[70px] gap-6 flex'>
       <div>
       {show && <EventCalendar />}
       </div>
      
      <div className='flex-col'>
       <div className="py-4 px-5 mx-auto bg-black  bg-opacity-50 rounded-md">
-            <div className="text-center mb-4">
-              <h2 className="text-2xl font-bold text-white">{monthNames[currentMonth]} {currentYear}</h2>   
+            <div className="text-center mb-4 flex gap-2 justify-between">
+                <button  className=" rounded-full border-solid border-white border-2 hover:text-black hover:bg-white duration-300  text-white" onClick={() => setShow(!show)} >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4">
+                        <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
+                    </svg>
+                </button> 
+                <h2 className="text-xl font-bold text-white">{monthNames[currentMonth]} {currentYear}</h2>   
             </div>
                 <div className="grid grid-cols-7 font-bold  pt-3">
                   <div className="text-center text-white mb-2 ">Sun</div>
@@ -81,17 +84,10 @@ const Calendar = () => {
                 </div>
               </div> 
            <div className='flex-col'>
-            <GetEvent />
-            <button  className=" my-4 float-right p-2 rounded-full border-solid border-white border-2 hover:text-black hover:bg-white duration-300  text-white" onClick={() => setShow(!show)} >
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-5 h-5">
-                    <path d="M8.75 3.75a.75.75 0 0 0-1.5 0v3.5h-3.5a.75.75 0 0 0 0 1.5h3.5v3.5a.75.75 0 0 0 1.5 0v-3.5h3.5a.75.75 0 0 0 0-1.5h-3.5v-3.5Z" />
-                </svg>
-
-            </button> 
+            <GetEvent /> 
             </div>   
           
      </div>        
-     </div>
    </div>
   );
 };

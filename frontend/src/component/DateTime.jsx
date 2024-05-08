@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect,useState} from 'react';
 
+
 function DateTime() {
     const [currentDay, setCurrentDay] = useState('');
     const [currentTime, setCurrentTime] = useState('');
@@ -24,9 +25,13 @@ function DateTime() {
     }, []);
   
     return(
-        <div className="text-center md:mr-[550px] mt-10 font-semibold font-sans text-shadow-md text-white ">
-        <div className="font-bold  text-[40px]">{currentDay}</div>
-        <div className="font-semibold  mb-4 text-[30px]">{currentTime}</div>
+        <div className="text-center float-right font-semibold font-sans text-shadow-md text-white ">
+          <div className='flex gap-3 mr-3 mt-4'>
+            <div className="font-bold  text-[20px]">{currentDay}</div>
+            <div className="font-semibold  mb-4 text-[20px]">{currentTime}</div>
+          </div>
+      
+      
       </div>
     )
 }

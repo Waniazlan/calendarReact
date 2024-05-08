@@ -15,19 +15,21 @@ const GetEvent = () => {
   
 
   useEffect(() => {
+    
     const fetchEvents = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/events');
+        const response = await axios.get(`http://localhost:4000/events?token=${localStorage.getItem("token")}`);
         setEvents(response.data.events)  
-       
       } catch (error) {
         console.error('Error fetching events:', error);
         
       }
     };
-
-    fetchEvents();
-  }, []); 
+    if(isLogging){
+      fetchEvents();
+    }
+    
+  }, [isLogging]); 
 
   const deleteEvent = async (eventId) => {
     try {
