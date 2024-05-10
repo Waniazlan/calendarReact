@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 
@@ -32,6 +32,12 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("token")
   };
 
+  //useEffect(() =>{
+  //  const token = localStorage.getItem("token");
+    //if(token){
+   //   setIsLogging(true)
+  //  }
+ // },[])
   return (
     <AuthContext.Provider value={{ isLogging, login, logOut }}>
       {children}
