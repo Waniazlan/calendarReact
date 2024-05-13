@@ -9,9 +9,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 
-const GOGGLE_CLIENT_ID = '433784948390-lp2v21b6svlilevtq6ek19pr55oq45bo.apps.googleusercontent.com'
-const GOOGLE_CLIENT_SECRET = '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'
-const REFRESH_TOKEN = '1//0ghNyfEuEGzjaCgYIARAAGBASNwF-L9IrgNA-5bhUzxGHlYkfTyL1gTUBFKEpjSibwwTFmShYlzI3X4v81COxp7zJVhMSZvogEQI'
+const GOGGLE_CLIENT_ID = '21633126117-m0adi0dqmienhgrd9eierabhklpoi1b3.apps.googleusercontent.com'
+const GOOGLE_CLIENT_SECRET = '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'
+const REFRESH_TOKEN = '1//0gNz4BVB4bVcwCgYIARAAGBASNwF-L9IrNvrqKKomtjlBQXs8I-Z5p2SCpPJigvM__l3rw7iOLh5gKnzuw-ErsGcPgQzppE-DHFU'
 
 const oauth2Client = new google.auth.OAuth2(
     GOGGLE_CLIENT_ID,
@@ -31,9 +31,7 @@ app.get('/',async(req,res,next) =>{
 
 app.post('/create-token', async (req, res) => {
  const {code} = req.body;
- res.send(code)
-});
-
+})
 app.post('/create-event', async (req, res,next) => {
   try {
       const {summary,startDateTime,endDateTime} = req.body;
@@ -72,8 +70,6 @@ app.get('/events', async (req, res) => {
       orderBy: 'startTime',
     });
     const events = response.data.items;
-    
-    console.log(events)
     res.json({events})
   } catch (error) {
     console.error('Error retrieving events:', error);

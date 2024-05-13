@@ -41,7 +41,7 @@ function App() {
     
   return (
 
-    <GoogleOAuthProvider clientId='433784948390-lp2v21b6svlilevtq6ek19pr55oq45bo.apps.googleusercontent.com'>
+    <GoogleOAuthProvider clientId='21633126117-m0adi0dqmienhgrd9eierabhklpoi1b3.apps.googleusercontent.com'>
       <AuthProvider >
    <div className='h-screen w-screen overflow-y-auto' style={{
     backgroundImage: `url(${imageUrl})`,

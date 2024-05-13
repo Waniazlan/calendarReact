@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
     scope: 'https://www.googleapis.com/auth/calendar',
     onSuccess: async (codeResponse) => {
       try {
-        const { code } = codeResponse;
+        const { code } = codeResponse; 
         localStorage.setItem("token",code);
         setIsLogging(true);
       } catch (error) {
@@ -32,12 +32,12 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("token")
   };
 
-  //useEffect(() =>{
-  //  const token = localStorage.getItem("token");
-    //if(token){
-   //   setIsLogging(true)
-  //  }
- // },[])
+ // useEffect(() =>{
+  //const token = localStorage.getItem("token");
+   // if(token){
+    //setIsLogging(true)
+  //}
+ //},[])
   return (
     <AuthContext.Provider value={{ isLogging, login, logOut }}>
       {children}
